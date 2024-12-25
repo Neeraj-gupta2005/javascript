@@ -33,7 +33,7 @@
     display: flex;
     height: 100%;
     gap: 8px;
-    width: 320px;
+    width: 360px;
 }
 .home-btn{
     height: 100%;
@@ -133,7 +133,7 @@
 .right{
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 5px;
     align-items: center;
     height: 100%;
 }
