@@ -32,6 +32,7 @@
     display: flex;
     height: 100%;
     gap: 8px;
+    width: 320px;
 }
 .home-btn{
     height: 100%;
@@ -54,9 +55,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #1f1f1f;
+    width: 100%;
+    border-radius: 30px;
+    transition: all ease-in 0.15s;
 }
+.input-box:hover{
+    background-color: #2b2b2b;
+    outline: 0.1px solid #464646;
+}
+.input-box:focus-within {
+    outline: 1px solid white; /* Add a white outline when input is focused */
+  }
 
-
+.input-box:focus-within .search-btn svg path,
+.input-box:hover .search-btn svg path {
+  fill: white; /* Change button colors to white when input is focused */
+}
 .search-btn{
     height: 100%;
     width: 32px;
@@ -67,14 +82,15 @@
     padding: 3px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: #1f1f1f;
+    background-color: transparent;
 
 }
 .search input{
     height: 100%;
     outline: none;
     border: none;
-    background-color: #1f1f1f;
+    background-color: transparent;
+    width: 100%;
 }
 .search input::placeholder{
     font-size: 11px;
@@ -87,6 +103,7 @@
 .browse-btn{
     height: 100%;
     width: 32px;
+    margin-right:3px ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +111,15 @@
     padding: 3px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: #1f1f1f;
+    background-color: transparent;
+}
+.danda{
+    height: 100%;
+    color:#b3b3b3;
+    width: 2px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
 }
 
 .right{
