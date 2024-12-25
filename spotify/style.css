@@ -1,6 +1,7 @@
 *{
     margin:0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .header{
@@ -24,6 +25,76 @@
 .left svg{
     color: white;
     height: 24px;
+}
+
+
+.search{
+    display: flex;
+    height: 100%;
+    gap: 8px;
+}
+.home-btn{
+    height: 100%;
+    width: 32px;
+    padding: 3px;
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.home-btn svg , .search-btn svg , .browse-btn svg{
+    margin: 5px;
+    width: 20px;
+}
+.input-box{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-btn{
+    height: 100%;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 3px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: #1f1f1f;
+
+}
+.search input{
+    height: 100%;
+    outline: none;
+    border: none;
+    background-color: #1f1f1f;
+}
+.search input::placeholder{
+    font-size: 11px;
+    color: #b3b3b3;
+    font-weight: 500;
+}
+.search input:focus{
+    color: white;
+}
+.browse-btn{
+    height: 100%;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 3px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #1f1f1f;
 }
 
 .right{
