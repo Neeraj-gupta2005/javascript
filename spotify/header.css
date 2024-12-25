@@ -1,0 +1,169 @@
+
+.header{
+    height: 40px;
+    background-color: #000000;
+    padding: 5px;
+}
+.inner-header{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.left{
+    margin-left: 15px;
+    cursor: pointer;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.left svg{
+    color: white;
+    height: 24px;
+}
+
+
+.search{
+    display: flex;
+    height: 100%;
+    gap: 8px;
+    width: 360px;
+}
+.home-btn{
+    height: 100%;
+    width: 32px;
+    padding: 3px;
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all ease-in 0.15s;
+}
+.home-btn:hover{
+    background-color: #2e2e2e;
+}
+.home-btn svg , .search-btn svg , .browse-btn svg{
+    margin: 5px;
+    width: 20px;
+}
+.input-box{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f;
+    width: 100%;
+    border-radius: 30px;
+    transition: all ease-in 0.15s;
+}
+.input-box:hover{
+    background-color: #2b2b2b;
+    outline: 0.1px solid #464646;
+}
+.input-box:focus-within {
+    outline: 1px solid white; /* Add a white outline when input is focused */
+  }
+
+.input-box:focus-within .search-btn svg path,
+.input-box:hover .search-btn svg path {
+  fill: white; /* Change button colors to white when input is focused */
+}
+.search-btn{
+    height: 100%;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    border: none;
+    padding: 3px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: transparent;
+
+}
+.search input{
+    height: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+.search input::placeholder{
+    font-size: 11px;
+    color: #b3b3b3;
+    font-weight: 500;
+}
+.search input:focus{
+    color: white;
+}
+.browse-btn{
+    height: 100%;
+    width: 32px;
+    margin-right:3px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: transparent;
+    transition: all ease 0.15s;
+}
+.danda{
+    height: 100%;
+    color:#b3b3b3;
+    width: 2px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.right{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    height: 100%;
+}
+
+.right button{
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+}
+.right button:first-child{
+    color:#b3b3b3;
+    cursor: pointer;
+    background-color: transparent;
+}
+.right button:first-child:hover{
+    color: white;
+    transform: scale(1.025); /* Zooms in the button by 10% */
+    transform-origin: center;
+}
+
+.right button:last-child{
+    color: #2b2b2b;
+    background-color: white;
+    cursor: pointer;
+}
+
+.right button:last-child:hover{
+    background-color: rgb(218, 218, 218);
+    transform: scale(1.03); /* Zooms in the button by 10% */
+    transform-origin: center;
+}
