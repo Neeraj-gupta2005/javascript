@@ -67,6 +67,11 @@
 
 .text-content{
     padding-top: 5px;
+    display: -webkit-box; /* Use a flex-like box model */
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical; /* Set box orientation to vertical */
+    overflow: hidden; /* Hide the overflowing content */
+    text-overflow: ellipsis; /* Show ellipsis (...) at the end */
 }
 .text-content p{
     color: #b3b3b3;
