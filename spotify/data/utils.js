@@ -238,3 +238,24 @@ export const playlist = [
     }
 
 ]
+
+
+export const footerData = [
+    {
+      title: 'Company',
+      links: ['About', 'Jobs', 'For the Record']
+    },
+    {
+      title: 'Communities',
+      links: ['For Artists', 'Developers', 'Advertising', 'Investors', 'Vendors']
+    },
+    {
+      title: 'Useful links',
+      links: ['Support', 'Free Mobile App']
+    },
+    {
+      title: 'Spotify Plans',
+      links: ['Premium Individual', 'Premium Duo', 'Premium Family', 'Premium Student', 'Spotify Free']
+    }
+  ];
+  
