@@ -53,6 +53,7 @@ section{
     align-items: center;
 }
 .plus-icon{
+    cursor: pointer;
     display: flex;
     justify-content: start;
     align-items: start;
@@ -97,6 +98,7 @@ section{
     margin-bottom: 10px;
 }
 .first-playlist button{
+    cursor: pointer;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 8px;
@@ -121,6 +123,7 @@ section{
     color:#b3b3b3;
     margin-right: 14px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .links ul{
     display: flex;
@@ -135,6 +138,7 @@ section{
 }
 
 .lang{
+    cursor: pointer;
     border-radius: 20px;
     margin-left: 10px;
     padding-top: 3px;
