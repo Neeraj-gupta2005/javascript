@@ -1,4 +1,4 @@
-import { popularArtist, popularAlbums, popularRadio, featuredCharts, playlist, footerData } from './data/utils.js';
+import { popularArtist, popularAlbums, popularRadio, featuredCharts, playlist, footerData , songs } from './data/utils.js';
 
 let rightSection = document.querySelector(".right-section")
 
@@ -233,6 +233,25 @@ function lastPartFun(){
     return lastPart
 }
 
+function getSong(){
+    let songDiv = document.getElementById("songs")
+    songs.forEach((song) => {
+        let playlistDiv = document.createElement("div")
+        playlistDiv.className = "first-playlist"
+        let html = `
+            <div class="number">${song.id}.</div>
+            <div class="song-detail">
+                <div class="heading">${song.title}</div>
+                <div class="sub-heading">${song.artist}</div>
+            </div>
+            <button class="left-playbtn">
+                <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" class="Svg-sc-ytk21e-0 bneLcE"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg>
+            </button>
+        `
+        playlistDiv.innerHTML += html
+        songDiv.appendChild(playlistDiv)
+    })
+}
 
 rightSection.appendChild(popularArtistFun())
 rightSection.appendChild(popularAlbumsFun())
@@ -241,5 +260,5 @@ rightSection.appendChild(featuredChartsFun())
 rightSection.appendChild(playlistFun())
 rightSection.appendChild(footerFun())
 rightSection.appendChild(lastPartFun())
-
+getSong()
 

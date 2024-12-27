@@ -89,11 +89,15 @@ main{
     padding-left: 10px;
     border-radius: 5px;
     padding-right: 6px;
+    margin-bottom: 8px;
     width: 100%;
     background-color: #1f1f1f;
 }
 .first-playlist:hover{
     background-color: #282828;
+    transform: scale(1.04); 
+    transform-origin: center; 
+    transition: transform 0.3s ease; 
 }
 .number{
     font-size: 12px;

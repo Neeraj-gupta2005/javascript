@@ -260,38 +260,45 @@ export const footerData = [
   ];
   
 
-  const songs = [
+export const songs = [
     {
+        id: 1,
         title: "Falak Tak",
         artist: "Vishal-Shekhar",
         file: "assets/songs/falaktak.mp3"
     },
     {
+        id: 2,
         title: "Hothon se chhu lo tum",
         artist: "Jagjit Singh",
         file: "assets/songs/hothosechulo.mp3"
     },
     {
+        id: 3,
         title: "jo beech bajariya tune",
         artist: "Anu Malik",
         file: "assets/songs/jobeech.mp3"
     },
     {
+        id: 4,
         title: "kabootar",
         artist: "Renuka Panwar",
         file: "assets/songs/kabootar.mp3"
     },
     {
+        id: 5,
         title: "pyar re karu",
         artist: "peehu yadav",
         file: "assets/songs/PyarReKaru.mp3"
     },
     {
+        id: 6,
         title: "Rafta Rafta wo meri",
         artist: "atif aslam",
         file: "assets/songs/raftarafta.mp3"
     },
     {
+        id: 7,
         title: "ye jo halka halka",
         artist: "Nusrat Fateh Ali Khan",
         file: "assets/songs/yejohalkahalka.mp3"
