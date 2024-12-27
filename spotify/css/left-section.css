@@ -117,6 +117,10 @@ main{
     background-color: #1DB954;
     cursor: pointer;
 }
+.left-playbtn .pause{
+    display: none;
+}
+
 .left-playbtn:hover{
     background-color: #1ed760;
 }
