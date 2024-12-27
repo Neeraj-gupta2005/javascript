@@ -3,14 +3,17 @@ body{
 }
 
 .playbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 60px;
     background-color: black;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0;                
-    visibility: hidden;        
+    /* opacity: 0;                
+    visibility: hidden;         */
     transition: opacity 0.3s ease, visibility 0s 0.3s; 
 }
 
@@ -19,3 +22,78 @@ body{
     visibility: visible;
     transition: opacity 0.3s ease, visibility 0s 0s;  
 }
+
+.leftSongPart{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+    width: 240px;
+    background-color: lightcoral;
+}
+.playbar-list{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    border-radius: 5px;
+    padding-right: 6px;
+    width: 100%;
+    background-color: #000000;
+}
+
+.spotilogo svg{
+    height: 18px;
+}
+.spotilogo{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.playbar-heading{
+    color: white;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.playbar-subheading{
+    color: #c9c9c969;
+    font-size: 9px;
+}
+
+/* central part */
+
+.centerControlPart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex: 1;
+    background-color: lightblue;
+}
+
+.small-box{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+
+
+
+
+
+.volumePart{
+    height: 100%;
+    width: 260px;
+    background-color: lightcoral;
+}
+
+
