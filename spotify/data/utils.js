@@ -259,3 +259,41 @@ export const footerData = [
     }
   ];
   
+
+  const songs = [
+    {
+        title: "Falak Tak",
+        artist: "Vishal-Shekhar",
+        file: "assets/songs/falaktak.mp3"
+    },
+    {
+        title: "Hothon se chhu lo tum",
+        artist: "Jagjit Singh",
+        file: "assets/songs/hothosechulo.mp3"
+    },
+    {
+        title: "jo beech bajariya tune",
+        artist: "Anu Malik",
+        file: "assets/songs/jobeech.mp3"
+    },
+    {
+        title: "kabootar",
+        artist: "Renuka Panwar",
+        file: "assets/songs/kabootar.mp3"
+    },
+    {
+        title: "pyar re karu",
+        artist: "peehu yadav",
+        file: "assets/songs/PyarReKaru.mp3"
+    },
+    {
+        title: "Rafta Rafta wo meri",
+        artist: "atif aslam",
+        file: "assets/songs/raftarafta.mp3"
+    },
+    {
+        title: "ye jo halka halka",
+        artist: "Nusrat Fateh Ali Khan",
+        file: "assets/songs/yejohalkahalka.mp3"
+    }
+];

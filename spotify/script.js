@@ -241,3 +241,5 @@ rightSection.appendChild(featuredChartsFun())
 rightSection.appendChild(playlistFun())
 rightSection.appendChild(footerFun())
 rightSection.appendChild(lastPartFun())
+
+
