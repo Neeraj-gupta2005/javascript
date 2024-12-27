@@ -27,6 +27,7 @@ main{
     margin-left: 3px;
     border-radius: 5px;
     height: 92vh;
+    /* height: 92vh; */
 }
 
 .right-section{
@@ -37,6 +38,7 @@ main{
     flex: 1;
     overflow-y: scroll;
     height: 92vh;
+    /* height: 92vh; */
 }
 
 .your-library{

@@ -1,0 +1,21 @@
+body{
+    position: relative;
+}
+
+.playbar{
+    height: 60px;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;                
+    visibility: hidden;        
+    transition: opacity 0.3s ease, visibility 0s 0.3s; 
+}
+
+.playbar.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s;  
+}
