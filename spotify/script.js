@@ -11,7 +11,6 @@ const playbarSubHeading = document.querySelector(".playbar-subheading");
 
 
 let isPlayingFromLeft = false
-let isPlayingFromPlayBar = false
 
 let songId;
 let currentPlayIcon = null;
@@ -101,7 +100,6 @@ playBarPauseBtn.addEventListener("click",() => {
     playBarPauseBtn.style.display = "none"
     playBarPlayBtn.style.display = "block"
     player.pause()
-    isPlayingFromPlayBar = true;
 
     
 })
@@ -115,7 +113,6 @@ playBarPlayBtn.addEventListener("click",()=>{
     playBarPlayBtn.style.display = "none"
     playBarPauseBtn.style.display = "block"
     player.play()
-    isPlayingFromPlayBar = true;
 
     
 })
@@ -161,7 +158,6 @@ previousBtn.addEventListener("click" , ()=>{
 
         currentPauseIcon =  previousSongPauseIcon
         currentPlayIcon = previousSongPlayIcon
-        isPlayingFromPlayBar = true;
         songId -= 1
     }
 })
@@ -206,7 +202,6 @@ nextBtn.addEventListener("click" , ()=>{
         currentPauseIcon =  nextSongPauseIcon
         currentPlayIcon = nextSongPlayIcon
 
-        isPlayingFromPlayBar = true;
         songId = currentPlayingSongId + 1
     }
     
