@@ -141,7 +141,7 @@ body{
     color: #b3b3b3;
 }
 
-.play-line{
+.play-line , .volume-bar{
     margin-bottom: 2px;
     width: 100%;
     height: 3px;
@@ -155,7 +155,11 @@ body{
     justify-content: start;
     overflow: visible;
 }
-.play-line:hover .current-play-line{
+.play-line:hover .current-play-line {
+    background-color: #1DB954;
+    
+}
+.volume-bar:hover .current-volume-line {
     background-color: #1DB954;
     
 }
@@ -177,7 +181,12 @@ body{
 .current-play-line{
     transition: none;
     background-color: #b3b3b3;
-    width: 50%;
+    width: 0%;
+    height: 100%;
+}
+.current-volume-line{
+    transition: none;
+    background-color: #b3b3b3;
     height: 100%;
 }
 

@@ -94,17 +94,14 @@ const nextBtn = document.querySelector(".next")
 
 function changeStyle(songId){
     if(songId == 1 ){
-        console.log("prev")
         previousBtn.style.fill = "#2e2e2e"
         previousBtn.style.pointerEvents = "none"
     }
     else if(songId ==  songs.length){
-        console.log("next")
         nextBtn.style.fill = "#2e2e2e"
         nextBtn.style.pointerEvents = "none"
     }
     else{
-        console.log("no one")
         previousBtn.style.fill = "#b3b3b3"
         previousBtn.style.pointerEvents = "auto"
         nextBtn.style.fill = "#b3b3b3"
@@ -272,7 +269,29 @@ timelineBar.addEventListener("click", (event) => {
     player.currentTime = clickTime;
 });
 
+const volumeBar = document.querySelector(".volume-bar");
+const volumePerc = document.querySelector("#volume-perc");
+const volumeInnerBar = document.querySelector(".current-volume-line");
+volumeBar.addEventListener("click", (event) => {
+    const rect = volumeBar.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const timelineWidth = rect.width;
+    const volume = Math.min(Math.max(offsetX / timelineWidth, 0), 1); // Clamp between 0 and 1
+    player.volume = volume; // Set normalized volume (0 to 1)
+    volumeInnerBar.style.width = `${volume * 100}%`
+    volumePerc.innerText = `${Math.round(volume * 100)}%`; // Display percentage (0 to 100)
 
+});
+
+// to set volume width when dom conten loaded and also to change the volume text
+
+function setVolumeWidth(){
+    volumeInnerBar.style.width = `${player.volume * 100}%`
+    volumePerc.innerText = `${Math.round(player.volume * 100)}%` // 
+}
+document.addEventListener("DOMContentLoaded", () => {
+    setVolumeWidth();
+})
 
 previousBtn.addEventListener("click" , ()=>{
     playbarHeading.textContent = songs[songId - 1].title
@@ -283,3 +302,25 @@ nextBtn.addEventListener("click" , ()=>{
     playbarSubHeading.textContent = songs[songId - 1].artist
 })
 
+
+
+const mute = document.querySelector("#mute");
+const currentVolume = player.volume * 100
+let isMute = false
+mute.addEventListener("click" , ()=>{
+    if(isMute == false){
+        player.muted = !player.muted;
+        volumePerc.innerText = "0%"
+        volumeInnerBar.style.width = "0%"
+        mute.style.fill = "#2e2e2e"
+        isMute = true
+    }
+    else{
+        player.muted = !player.muted;
+        volumePerc.innerText = "0%"
+        setVolumeWidth()
+        mute.style.fill = "#b3b3b3"
+        isMute = false
+    }
+    
+})
