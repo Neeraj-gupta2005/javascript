@@ -16,6 +16,7 @@ let songId;
 let currentPlayIcon = null;
 let currentPauseIcon = null;
 
+
 playButtons.forEach((playbutton) => {
     playbutton.addEventListener("click", () => {
         const filePath = playbutton.getAttribute("data-filePath")
@@ -24,7 +25,7 @@ playButtons.forEach((playbutton) => {
         const pauseIcon = document.querySelector(`.pause-${songId}`)
         const songName = songs[songId-1].title
         const songArtist = songs[songId-1].artist
-
+        changeStyle(songId)
 
         // Reset previous play/pause icons
         if (currentPlayIcon && currentPauseIcon) {
@@ -91,6 +92,27 @@ const playBarPauseBtn = document.querySelector(".playbar-pause-icon")
 const previousBtn = document.querySelector(".previous")
 const nextBtn = document.querySelector(".next")
 
+function changeStyle(songId){
+    if(songId == 1 ){
+        console.log("prev")
+        previousBtn.style.fill = "#2e2e2e"
+        previousBtn.style.pointerEvents = "none"
+    }
+    else if(songId ==  songs.length){
+        console.log("next")
+        nextBtn.style.fill = "#2e2e2e"
+        nextBtn.style.pointerEvents = "none"
+    }
+    else{
+        console.log("no one")
+        previousBtn.style.fill = "#b3b3b3"
+        previousBtn.style.pointerEvents = "auto"
+        nextBtn.style.fill = "#b3b3b3"
+        nextBtn.style.pointerEvents = "auto"
+    }
+}
+
+
 playBarPauseBtn.addEventListener("click",() => {
     if (currentPlayIcon && currentPauseIcon) {
         currentPauseIcon.style.display = "none";
@@ -119,92 +141,97 @@ playBarPlayBtn.addEventListener("click",()=>{
 
 previousBtn.addEventListener("click" , ()=>{
     const currentPlayingSongId = songId;
-    const previousSongId = currentPlayingSongId - 1;
-    const previousSongIndex = previousSongId - 1;
-    let source = songs[previousSongIndex].file
+    changeStyle(songId - 1)
+    if(currentPlayingSongId > 1){
+        const previousSongId = currentPlayingSongId - 1;
+        const previousSongIndex = previousSongId - 1;
+        let source = songs[previousSongIndex].file
     
+        if(player.paused){
+            player.src = source
+            // changing the icons
+            const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId - 1}`)
+            const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId - 1}`)
 
-    
-    if(player.paused){
-        player.src = source
-        // changing the icons
-        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId - 1}`)
-        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId - 1}`)
-
-        currentSongPauseIcon.style.display = "none"
-        currentSongPlayIcon.style.display = "block"
-        currentPauseIcon =   currentSongPauseIcon
-        currentPlayIcon = currentSongPlayIcon
-        songId -= 1
-    }else{
-        player.pause()
-        player.src = source
-        player.play()
-    
-
-        // changing the icons
-        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
-        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
-
-        currentSongPauseIcon.style.display = "none"
-        currentSongPlayIcon.style.display = "block"
+            currentSongPauseIcon.style.display = "none"
+            currentSongPlayIcon.style.display = "block"
+            currentPauseIcon =   currentSongPauseIcon
+            currentPlayIcon = currentSongPlayIcon
+            songId -= 1
+        }else{
+            player.pause()
+            player.src = source
+            player.play()
         
-        const previousSongPlayIcon = document.querySelector(`.play-${previousSongId}`)
-        const previousSongPauseIcon = document.querySelector(`.pause-${previousSongId}`)
 
-        previousSongPauseIcon.style.display = "block"
-        previousSongPlayIcon.style.display = "none"
+            // changing the icons
+            const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
+            const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
+
+            currentSongPauseIcon.style.display = "none"
+            currentSongPlayIcon.style.display = "block"
+            
+            const previousSongPlayIcon = document.querySelector(`.play-${previousSongId}`)
+            const previousSongPauseIcon = document.querySelector(`.pause-${previousSongId}`)
+
+            previousSongPauseIcon.style.display = "block"
+            previousSongPlayIcon.style.display = "none"
 
 
-        currentPauseIcon =  previousSongPauseIcon
-        currentPlayIcon = previousSongPlayIcon
-        songId -= 1
+            currentPauseIcon =  previousSongPauseIcon
+            currentPlayIcon = previousSongPlayIcon
+            songId -= 1
+        }
     }
 })
 
 
 nextBtn.addEventListener("click" , ()=>{
     const currentPlayingSongId = parseInt(songId);
-    const nextSongId = currentPlayingSongId + 1;
-    const nextSongIndex = nextSongId - 1;
-    
-    let source = songs[nextSongIndex].file
+    changeStyle(currentPlayingSongId + 1)
+    if(currentPlayingSongId < songs.length){
 
-    if(player.paused){
-        player.src = source
-        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId + 1}`)
-        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId + 1}`)
 
-        currentSongPauseIcon.style.display = "none"
-        currentSongPlayIcon.style.display = "block"
-        currentPauseIcon =   currentSongPauseIcon
-        currentPlayIcon = currentSongPlayIcon
-        songId = currentPlayingSongId + 1
-    }else{
-        player.pause()
-        player.src = source
-        player.play()
-
-        // changing the icons
-        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
-        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
-
-        currentSongPauseIcon.style.display = "none"
-        currentSongPlayIcon.style.display = "block"
+        const nextSongId = currentPlayingSongId + 1;
+        const nextSongIndex = nextSongId - 1;
         
-        const nextSongPlayIcon = document.querySelector(`.play-${nextSongId}`)
-        const nextSongPauseIcon = document.querySelector(`.pause-${nextSongId}`)
+        let source = songs[nextSongIndex].file
 
-        nextSongPauseIcon.style.display = "block"
-        nextSongPlayIcon.style.display = "none"
+        if(player.paused){
+            player.src = source
+            const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId + 1}`)
+            const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId + 1}`)
+
+            currentSongPauseIcon.style.display = "none"
+            currentSongPlayIcon.style.display = "block"
+            currentPauseIcon =   currentSongPauseIcon
+            currentPlayIcon = currentSongPlayIcon
+            songId = currentPlayingSongId + 1
+        }else{
+            player.pause()
+            player.src = source
+            player.play()
+
+            // changing the icons
+            const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
+            const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
+
+            currentSongPauseIcon.style.display = "none"
+            currentSongPlayIcon.style.display = "block"
+            
+            const nextSongPlayIcon = document.querySelector(`.play-${nextSongId}`)
+            const nextSongPauseIcon = document.querySelector(`.pause-${nextSongId}`)
+
+            nextSongPauseIcon.style.display = "block"
+            nextSongPlayIcon.style.display = "none"
 
 
-        currentPauseIcon =  nextSongPauseIcon
-        currentPlayIcon = nextSongPlayIcon
+            currentPauseIcon =  nextSongPauseIcon
+            currentPlayIcon = nextSongPlayIcon
 
-        songId = currentPlayingSongId + 1
+            songId = currentPlayingSongId + 1
+        }
     }
-    
     
 })
 
@@ -255,3 +282,4 @@ nextBtn.addEventListener("click" , ()=>{
     playbarHeading.textContent = songs[songId - 1].title
     playbarSubHeading.textContent = songs[songId - 1].artist
 })
+
