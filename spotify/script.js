@@ -14,7 +14,8 @@ let isPlayingFromLeft = false
 let isPlayingFromPlayBar = false
 
 let songId;
-
+let currentPlayIcon = null;
+let currentPauseIcon = null;
 
 playButtons.forEach((playbutton) => {
     playbutton.addEventListener("click", () => {
@@ -24,39 +25,41 @@ playButtons.forEach((playbutton) => {
         const pauseIcon = document.querySelector(`.pause-${songId}`)
         const songName = songs[songId-1].title
         const songArtist = songs[songId-1].artist
-        playButtons.forEach((btn) => {
-            const otherSongId = btn.getAttribute("data-id");
-            const otherPlayIcon = document.querySelector(`.play-${otherSongId}`);
-            const otherPauseIcon = document.querySelector(`.pause-${otherSongId}`);
-            if (otherPlayIcon && otherPauseIcon) {
-                otherPlayIcon.style.display = "block";
-                otherPauseIcon.style.display = "none";
-            }
-        });
 
 
+        // Reset previous play/pause icons
+        if (currentPlayIcon && currentPauseIcon) {
+            currentPlayIcon.style.display = "block";
+            currentPauseIcon.style.display = "none";
+        }
+
+        //update current play/pause icon
+        currentPlayIcon = playIcon;
+        currentPauseIcon = pauseIcon;
+
+        // toggle play/pause
         if(player.src.includes(filePath)){
             if(player.paused){
-                playIcon.style.display = "none"
-                pauseIcon.style.display = "block"
+                currentPlayIcon.style.display = "none";
+                currentPauseIcon.style.display = "block";
                 player.play()
                 isPlayingFromLeft= true
             }
             else{
-                pauseIcon.style.display = "none"
-                playIcon.style.display = "block"
+                currentPauseIcon.style.display = "none";
+                currentPlayIcon.style.display = "block";
                 player.pause()
                 isPlayingFromLeft = false
             }
         }else{
             player.src = filePath
-            playIcon.style.display = "none"
-            pauseIcon.style.display = "block"
+            currentPlayIcon.style.display = "none";
+            currentPauseIcon.style.display = "block";
             player.play()
             isPlayingFromLeft = true
         }
 
-        // to make playbar hide and show
+        // how or hide playbar
         if (isPlayingFromLeft === true) {
             playbar.classList.add("show");
             leftSection.style.paddingBottom = "60px";
@@ -78,13 +81,8 @@ playButtons.forEach((playbutton) => {
 
         
 
-        if(isPlayingFromLeft === true){
-            playBarPlayBtn.style.display = "none"
-            playBarPauseBtn.style.display = "block"
-        }else{
-            playBarPauseBtn.style.display = "none"
-            playBarPlayBtn.style.display = "block"
-        }
+        playBarPlayBtn.style.display = isPlayingFromLeft ? "none" : "block";
+        playBarPauseBtn.style.display = isPlayingFromLeft ? "block" : "none";
 
     })
 });
@@ -95,32 +93,31 @@ const previousBtn = document.querySelector(".previous")
 const nextBtn = document.querySelector(".next")
 
 playBarPauseBtn.addEventListener("click",() => {
-    const currentPlayingSongId = songId;
-    const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
-    const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
-
-    currentSongPauseIcon.style.display = "none"
-    currentSongPlayIcon.style.display = "block"
+    if (currentPlayIcon && currentPauseIcon) {
+        currentPauseIcon.style.display = "none";
+        currentPlayIcon.style.display = "block";
+    }
 
     playBarPauseBtn.style.display = "none"
     playBarPlayBtn.style.display = "block"
     player.pause()
     isPlayingFromPlayBar = true;
+
     
 })
 
 playBarPlayBtn.addEventListener("click",()=>{
-    const currentPlayingSongId = songId;
-    const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
-    const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
-
-    currentSongPauseIcon.style.display = "block"
-    currentSongPlayIcon.style.display = "none"
+    if (currentPlayIcon && currentPauseIcon) {
+        currentPauseIcon.style.display = "block";
+        currentPlayIcon.style.display = "none";
+    }
 
     playBarPlayBtn.style.display = "none"
     playBarPauseBtn.style.display = "block"
     player.play()
     isPlayingFromPlayBar = true;
+
+    
 })
 
 previousBtn.addEventListener("click" , ()=>{
@@ -128,57 +125,90 @@ previousBtn.addEventListener("click" , ()=>{
     const previousSongId = currentPlayingSongId - 1;
     const previousSongIndex = previousSongId - 1;
     let source = songs[previousSongIndex].file
-    player.pause()
-    player.src = source
-    player.play()
-
-    // changing the icons
-    const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
-    const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
-
-    currentSongPauseIcon.style.display = "none"
-    currentSongPlayIcon.style.display = "block"
     
-    const previousSongPlayIcon = document.querySelector(`.play-${previousSongId}`)
-    const previousSongPauseIcon = document.querySelector(`.pause-${previousSongId}`)
 
-    previousSongPauseIcon.style.display = "block"
-    previousSongPlayIcon.style.display = "none"
+    
+    if(player.paused){
+        player.src = source
+        // changing the icons
+        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId - 1}`)
+        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId - 1}`)
+
+        currentSongPauseIcon.style.display = "none"
+        currentSongPlayIcon.style.display = "block"
+        currentPauseIcon =   currentSongPauseIcon
+        currentPlayIcon = currentSongPlayIcon
+        songId -= 1
+    }else{
+        player.pause()
+        player.src = source
+        player.play()
+    
+
+        // changing the icons
+        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
+        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
+
+        currentSongPauseIcon.style.display = "none"
+        currentSongPlayIcon.style.display = "block"
+        
+        const previousSongPlayIcon = document.querySelector(`.play-${previousSongId}`)
+        const previousSongPauseIcon = document.querySelector(`.pause-${previousSongId}`)
+
+        previousSongPauseIcon.style.display = "block"
+        previousSongPlayIcon.style.display = "none"
 
 
-    isPlayingFromPlayBar = true;
-    songId -= 1
+        currentPauseIcon =  previousSongPauseIcon
+        currentPlayIcon = previousSongPlayIcon
+        isPlayingFromPlayBar = true;
+        songId -= 1
+    }
 })
 
 
 nextBtn.addEventListener("click" , ()=>{
     const currentPlayingSongId = parseInt(songId);
-    console.log(currentPlayingSongId)
     const nextSongId = currentPlayingSongId + 1;
-    console.log(nextSongId)
     const nextSongIndex = nextSongId - 1;
-    console.log(nextSongIndex)
-    let source = songs[nextSongIndex].file
-    console.log(source)
-    player.pause()
-    player.src = source
-    player.play()
-
-    // changing the icons
-    const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
-    const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
-
-    currentSongPauseIcon.style.display = "none"
-    currentSongPlayIcon.style.display = "block"
     
-    const nextSongPlayIcon = document.querySelector(`.play-${nextSongId}`)
-    const nextSongPauseIcon = document.querySelector(`.pause-${nextSongId}`)
+    let source = songs[nextSongIndex].file
 
-    nextSongPauseIcon.style.display = "block"
-    nextSongPlayIcon.style.display = "none"
+    if(player.paused){
+        player.src = source
+        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId + 1}`)
+        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId + 1}`)
+
+        currentSongPauseIcon.style.display = "none"
+        currentSongPlayIcon.style.display = "block"
+        currentPauseIcon =   currentSongPauseIcon
+        currentPlayIcon = currentSongPlayIcon
+        songId = currentPlayingSongId + 1
+    }else{
+        player.pause()
+        player.src = source
+        player.play()
+
+        // changing the icons
+        const currentSongPlayIcon = document.querySelector(`.play-${currentPlayingSongId}`)
+        const currentSongPauseIcon = document.querySelector(`.pause-${currentPlayingSongId}`)
+
+        currentSongPauseIcon.style.display = "none"
+        currentSongPlayIcon.style.display = "block"
+        
+        const nextSongPlayIcon = document.querySelector(`.play-${nextSongId}`)
+        const nextSongPauseIcon = document.querySelector(`.pause-${nextSongId}`)
+
+        nextSongPauseIcon.style.display = "block"
+        nextSongPlayIcon.style.display = "none"
 
 
-    isPlayingFromPlayBar = true;
-    songId = currentPlayingSongId + 1
+        currentPauseIcon =  nextSongPauseIcon
+        currentPlayIcon = nextSongPlayIcon
+
+        isPlayingFromPlayBar = true;
+        songId = currentPlayingSongId + 1
+    }
+    
 })
 
