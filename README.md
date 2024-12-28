@@ -48,6 +48,8 @@ A web-based Spotify clone designed using only HTML, CSS, and JavaScript. This ap
 
 Follow these steps to set up the project locally on your machine.
 
+[🔗Link](https://neeraj-gupta2005.github.io/javascript/)
+
 **Prerequisites**
 
 Make sure you have the following installed on your machine:
