@@ -205,5 +205,42 @@ nextBtn.addEventListener("click" , ()=>{
         songId = currentPlayingSongId + 1
     }
     
+    
 })
 
+function formatTime(seconds){
+    let minute = Math.floor(seconds / 60);
+    let second = Math.floor(seconds % 60);
+
+    return `${minute}:${second}`
+}
+
+player.addEventListener("timeupdate" , ()=> {
+    const seconds = player.currentTime
+    const duration = player.duration
+
+    const currentTime = document.querySelector("#CurrentTime");
+    const durationTime = document.querySelector("#durationTime");
+    const currentPlayLine = document.querySelector(".current-play-line")
+
+
+    let width = (seconds/duration) * 100
+    currentPlayLine.style.width = `${width}%`
+
+    currentTime.innerText = formatTime(seconds);
+    durationTime.innerText = formatTime(duration)
+
+
+})
+
+const timelineBar = document.querySelector(".play-line");
+timelineBar.addEventListener("click", (event) => {
+    const rect = timelineBar.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const timelineWidth = rect.width;
+
+    
+    const clickTime = (offsetX / timelineWidth) * player.duration;
+
+    player.currentTime = clickTime;
+});
