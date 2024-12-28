@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-   <img src="images/screenshots/banner.png" alt="Project Banner">
+   <img src="spotify/assets/images/spotify thumbnail.png" alt="Project Banner">
   <br />
 
   <div>
