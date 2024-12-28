@@ -244,3 +244,14 @@ timelineBar.addEventListener("click", (event) => {
 
     player.currentTime = clickTime;
 });
+
+
+
+previousBtn.addEventListener("click" , ()=>{
+    playbarHeading.textContent = songs[songId - 1].title
+    playbarSubHeading.textContent = songs[songId - 1].artist
+})
+nextBtn.addEventListener("click" , ()=>{
+    playbarHeading.textContent = songs[songId - 1].title
+    playbarSubHeading.textContent = songs[songId - 1].artist
+})
